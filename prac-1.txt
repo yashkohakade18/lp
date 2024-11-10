@@ -1,0 +1,33 @@
+1.import os 
+os.getcwd()
+2.import pandas as pd
+3.df = pd.read_csv('Heart.csv')
+4.df.head()
+5.df.shape
+6.df.isnull().sum()
+7.df.count()
+8.df.info()
+9.df.dtypes
+10.df == 0
+11.df[df == 0 ].count()
+12.df.columns
+13.df['Age'].mean()
+14.df[['Age', 'Sex', 'ChestPain', 'RestBP', 'Chol']]
+15.newdf = df[['Age', 'Sex', 'ChestPain', 'RestBP', 'Chol']]
+16.newdf
+17.# cross validation
+from sklearn.model_selection import train_test_split
+18.train, test = train_test_split(df, random_state=0, test_size=0.25)
+19.train.shape
+20.test.shape
+21.import numpy as np
+22.actual = list(np.ones(45)) + list(np.zeros(55))
+23.np.array(actual)
+24.predicted = list(np.ones(40)) + list(np.zeros(52)) + list(np.ones(8))
+np.array(predicted)
+25.from sklearn.metrics import ConfusionMatrixDisplay
+26.ConfusionMatrixDisplay.from_predictions(actual, predicted)
+27.from sklearn.metrics import classification_report
+28.print(classification_report(actual, predicted))
+29.from sklearn.metrics import accuracy_score
+accuracy_score(actual, predicted)

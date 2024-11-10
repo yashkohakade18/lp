@@ -1,0 +1,48 @@
+1.import pandas as pd
+import seaborn as sns
+2.df = pd.read_csv('Admission_Predict.csv')
+3.df.columns
+4.df.shape
+5.df.head()
+6.from sklearn.preprocessing import Binarizer
+bi = Binarizer(threshold=0.75)
+df['Chance of Admit '] = bi.fit_transform(df[['Chance of Admit ']])
+7.df.head
+8. x = df.drop('Chance of Admit ' , axis = 1)
+y = df['Chance of Admit ']
+9.x
+10.y = y.astype('int')
+11.sns.countplot(x = y);
+12.y.value_counts()
+13.#Cross-validation
+from sklearn.model_selection import train_test_split
+
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y, random_state=0, test_size=0.25)
+14.x_train.shape
+15.x_test.shape
+16.x_test
+17.#import the class
+from sklearn.tree import DecisionTreeClassifier
+18.classifier = DecisionTreeClassifier(random_state=0)
+19.classifier.fit(x_train, y_train)
+20.y_pred = classifier.predict(x_test)
+21.result = pd.DataFrame({
+    'actual':y_test,
+    'predicted': y_pred
+})
+22.result
+23.from sklearn.metrics import ConfusionMatrixDisplay, accuracy_score
+from sklearn.metrics import classification_report
+24.ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
+25.accuracy_score(y_test, y_pred)
+26.print(classification_report(y_test, y_pred))
+27.new = [[136,314,109,4,3.5,4.0,8.77,1]]
+classifier.predict(new)[0]
+28.from sklearn.tree import plot_tree
+29.import matplotlib.pyplot as plt 
+30.plt.figure(figsize=(12,12))
+plot_tree(classifier, fontsize=8, filled=True, rounded=True,
+          feature_names=x.columns, class_names=['NA', 'AD']);
+
+
